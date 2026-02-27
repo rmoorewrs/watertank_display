@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="container"></div>
+    <p>Tank level(%): <strong id="level-value">{{ level }}</strong></p>
+    <script>
+        const container = document.getElementById("container");
+        function updateLevel() {
+            fetch("/level")
+                .then(function (res) { return res.json(); })
+                .then(function (data) {
+                    const padded = String(data.level).padStart(3, '0');
+                    document.getElementById("level-value").textContent = data.level;
+                    container.innerHTML = '<img src="/static/img/D' + padded + '.png" alt="Level ' + data.level + '">';
+                });
+            }
+        updateLevel();
+        setInterval(updateLevel, 1000);
+    </script>
+</body>
+</html>
