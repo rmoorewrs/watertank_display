@@ -3,10 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f7f5f5;
+            background-image: url("/static/img/D000.png");
+            background-repeat: no-repeat;
+            background-position: left 8px top 50px;
+        }
+    </style>
 </head>
 <body>
-    <div id="container"></div>
     <p>Tank level(%): <strong id="level-value">{{ level }}</strong></p>
+    <div id="container" ></div>
     <script>
         const container = document.getElementById("container");
         function updateLevel() {
@@ -15,7 +23,8 @@
                 .then(function (data) {
                     const padded = String(data.level).padStart(3, '0');
                     document.getElementById("level-value").textContent = data.level;
-                    container.innerHTML = '<img src="/static/img/D' + padded + '.png" alt="Level ' + data.level + '">';
+                    container.innerHTML = '<img src="/static/img/D' + padded + '.png"   >';
+                    
                 });
             }
         updateLevel();
