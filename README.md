@@ -40,3 +40,29 @@ In the same git project directory run the test program
 python3 test_post_level.py
 ```
 > Note: the test program assumes port 5000. Edit the code to change it
+
+
+### Test the API using curl
+
+#### Get tank level:
+```
+curl http://192.168.12.54:5000/level
+```
+Expected Response (example):
+```
+{
+    "level": 26
+}
+```
+
+
+#### Set tank level:
+```
+curl -X POST http://192.168.12.54:5000/level -H "Content-Type: application/json" -d '{"level": 75}'
+```
+Expected Response (example):
+```
+{
+    "level": 75
+}
+```
