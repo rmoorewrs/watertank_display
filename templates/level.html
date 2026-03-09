@@ -6,7 +6,7 @@
     <style>
         body {
             background-color: #f7f5f5;
-            background-image: url("/static/img/D000.png");
+            background-image: url("/static/img/D000.webp");
             background-repeat: no-repeat;
             background-position: left 8px top 50px;
         }
@@ -23,7 +23,7 @@
                 .then(function (data) {
                     const padded = String(data.level).padStart(3, '0');
                     document.getElementById("level-value").textContent = data.level;
-                    container.innerHTML = '<img src="/static/img/D' + padded + '.png"   >';
+                    container.innerHTML = '<img src="/static/img/D' + padded + '.webp"   >';
                     
                 });
             }
