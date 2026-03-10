@@ -5,7 +5,7 @@ import time
 
 import requests
 
-API_URL = "http://127.0.0.1:5000/level"
+API_URL = "http://127.0.0.1:5000/fill"
 UPDATE_PERIOD_S = 1.5  # seconds between each POST
 LEVEL_MAX = 100
 LEVEL_MIN = 0
@@ -19,7 +19,7 @@ def main():
     print(f"POSTing level to {API_URL} every {UPDATE_PERIOD_S} s (0–100). Ctrl+C to stop.")
     while True:
         try:
-            resp = requests.post(API_URL, json={"level": int(round(level))}, timeout=2)
+            resp = requests.post(API_URL, json={"delta_level": int(round(level))}, timeout=2)
             resp.raise_for_status()
         except requests.RequestException as e:
             print(f"POST failed: {e}")

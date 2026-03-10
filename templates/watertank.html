@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-    <p>Tank level(%): <strong id="level-value">{{ level }}</strong></p>
+    <p>Tank level(%): <strong id="level-value">{{ level }}</strong> Mode: <strong id="mode-value">{{ mode }}</strong></p>
     <div id="container" ></div>
     <script>
         const container = document.getElementById("container");
@@ -21,12 +21,16 @@
             fetch("/level")
                 .then(function (res) { return res.json(); })
                 .then(function (data) {
-                    const padded = String(data.level).padStart(3, '0');
-                    document.getElementById("level-value").textContent = data.level;
+                const padded = String(data.level).padStart(3, '0');
+                document.getElementById("level-value").textContent = data.level;
+                document.getElementById("mode-value").textContent = data.mode;
+                if (data.mode == "fill") {
+                    container.innerHTML = '<img src="/static/img/F' + padded + '.webp"   >';
+                } else {
                     container.innerHTML = '<img src="/static/img/D' + padded + '.webp"   >';
-                    
-                });
-            }
+                };  
+            });
+        };
         updateLevel();
         setInterval(updateLevel, 1000);
     </script>
