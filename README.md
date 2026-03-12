@@ -1,5 +1,5 @@
 # watertank_display
-a simple watertank simulated display that can be run in a container
+a simple simulated watertank that runs in a container and has web-based display
 
 ![HTTP Display](https://github.com/rmoorewrs/watertank_display/blob/main/doc_img/tank-animation.gif)
 
