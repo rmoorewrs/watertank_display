@@ -37,7 +37,7 @@ docker run --rm -p 5000:5000 watertank
 5) Run the test program
 In the same git project directory run the test program
 ```
-python3 test_post_level.py
+python3 cycle_drain_fill.py 
 ```
 > Note: the test program assumes port 5000. Edit the code to change it
 
@@ -56,7 +56,7 @@ Expected Response (example):
 ```
 
 
-#### Set tank level:
+#### Set tank level (force level):
 ```
 curl -X POST http://192.168.12.54:5000/level -H "Content-Type: application/json" -d '{"level": 75}'
 ```
@@ -66,3 +66,28 @@ Expected Response (example):
     "level": 75
 }
 ```
+#### Drain water from the tank:
+Example: drain 1% of the water
+```
+ curl -X POST http://192.168.12.53:5000/drain -H "Content-Type: application/json" -d '{"delta_level": 1}'
+```
+Expected Response (example):
+```
+{
+    "level": 73,
+    "mode": "drain"
+}
+```
+#### Add water to the tank:
+Example: add 1% of tank's capacity
+```
+ curl -X POST http://192.168.12.53:5000/fill -H "Content-Type: application/json" -d '{"delta_level": 1}'
+```
+Expected Response (example):
+```
+{
+    "level": 74,
+    "mode": "fill"
+}
+```
+
