@@ -1,6 +1,7 @@
 # watertank_display
-a simple simulated watertank that runs in a container and has web-based display
-Rich Moore - rmoorewrs@gmail.com
+a simple simulated watertank that runs in a container and has web-based display. 
+
+author: Rich Moore - rmoorewrs@gmail.com
 
 ![HTTP Display](https://github.com/rmoorewrs/watertank_display/blob/main/doc_img/tank-animation.gif)
 
