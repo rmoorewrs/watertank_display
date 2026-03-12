@@ -19,7 +19,7 @@ author: Rich Moore - rmoorewrs@gmail.com
 1) Clone this repo
 
 ```
-git clone https://github.com/rmoorewrs/doc_img/tank-animation.gif
+git clone https://github.com/rmoorewrs/watertank_display.git
 ```
 
 2) Build the container
