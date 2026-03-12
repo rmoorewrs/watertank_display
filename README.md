@@ -15,7 +15,7 @@ a simple watertank simulated display that can be run in a container
 ## Instructions
 1) clone this repo
 ```
-git clone https://github.com/rmoorewrs/watertank_display.git
+git clone https://github.com/rmoorewrs/doc_img/tank-animation.gif
 ```
 
 2) Build the container
@@ -35,7 +35,7 @@ docker run --rm -p 5000:5000 watertank
 > Note: the container is listening on all interfaces
 
 5) Run the test program
-In the same git project directory run the test program
+Run the test `cycle_drain_fill.py` program in the same directory
 ```
 python3 cycle_drain_fill.py 
 ```
