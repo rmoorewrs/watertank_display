@@ -1,7 +1,7 @@
 # watertank_display
 a simple watertank simulated display that can be run in a container
 
-![HTTP Display](https://github.com/rmoorewrs/watertank_display/blob/main/static/img/D037.webp)
+![HTTP Display](https://github.com/rmoorewrs/watertank_display/blob/main/static/doc_img/tank-animation.gif)
 
 ## Requirements
 - docker
