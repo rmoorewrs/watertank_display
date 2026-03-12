@@ -12,6 +12,13 @@ author: Rich Moore - rmoorewrs@gmail.com
 - python packages 
   - flask
   - flask-restful
+  ```
+  On Debian or Ubuntu:
+  $ sudo apt install \
+    python3-flask \
+    python3-requests \
+    python3-flask-restful
+  ```
 
 
 ## Instructions
