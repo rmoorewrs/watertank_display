@@ -15,7 +15,7 @@ author: Rich Moore - rmoorewrs@gmail.com
 
 
 ## Instructions
-1) clone this repo
+1) Clone this repo
 ```
 git clone https://github.com/rmoorewrs/doc_img/tank-animation.gif
 ```
@@ -26,13 +26,13 @@ cd watertank_display
 docker build -t watertank .
 ```
 
-3) run the container
+3) Run the tank container
 ```
 # map any port that works for you to 5000 inside the container
 docker run --rm -p 5000:5000 watertank
 ```
 
-4) Obeserve the Tank
+4) Observe the Tank in a browser
 - Open a browser to http://localhost:5000
 > Note: the container is listening on all interfaces
 
