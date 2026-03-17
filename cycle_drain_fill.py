@@ -2,6 +2,8 @@
 """Send POST requests to the Flask level API, cycling level 0–100 with time between updates."""
 import time
 import requests
+import threading
+from threading import Thread
 
 API_URL = "http://127.0.0.1:5000/"
 UPDATE_PERIOD_S = 1 # seconds between each POST
@@ -20,24 +22,24 @@ def validate_range(value,min,max):
         num = max
     return num
 
-
-def main():
-    print(f"POSTing level to {API_URL} every {UPDATE_PERIOD_S} s ({LEVEL_MIN}–{LEVEL_MAX}). Ctrl+C to stop.")
-    print(f"fill URL = {API_URL}fill")
-    print(f"drain URL = {API_URL}drain")
-
-    # start off at minimum, set the level
-    level = LEVEL_MIN
-    MODE = 'fill'
+def cycle_task(should_stop:threading.Event):
+    # get the current tank level and figure out if we should be filling or draining
     try:
-        resp = requests.post(API_URL+'level', json={'level': level}, timeout=2)
+        resp = requests.get(API_URL+'level',timeout=2)
         resp.raise_for_status()
+        level=resp.json()['level']
     except requests.RequestException as e:
         print(f"POST failed: {e}")
 
+    if (level < LEVEL_MAX):
+        print(f"Initial level={level}, Starting in fill mode")
+        MODE = 'fill'
+    else:
+        print(f"Initial level={level}, Starting in drain mode")  
+        MODE = 'drain'
 
-    # loop until ctrl-c
-    while True:      
+
+    while not should_stop.is_set():
         try:
             resp = requests.post(API_URL+MODE, json={'delta_level': DELTA}, timeout=2)
             resp.raise_for_status()
@@ -58,6 +60,21 @@ def main():
         # sleep
         time.sleep(UPDATE_PERIOD_S)
 
+
+def main():
+    print(f"Sending command to {API_URL} every {UPDATE_PERIOD_S} s ({LEVEL_MIN}–{LEVEL_MAX})")
+    print(f"fill URL = {API_URL}fill, drain URL = {API_URL}drain")
+    print("Running level control task.")
+
+    should_stop = threading.Event() # create empty event to tell the task when to quit
+    run_cycle = Thread(target=cycle_task,daemon=True,args=(should_stop,))
+    run_cycle.start()
+    print("task started")
+    time.sleep(1)
+
+    input("hit any key to exit ...")
+    should_stop.set()
+    print("Done")
 
 if __name__ == "__main__":
     main()

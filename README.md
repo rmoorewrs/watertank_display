@@ -112,3 +112,7 @@ Expected Response (example):
 }
 ```
 
+#### Get an image showing the current tank level:
+```
+curl http://127.0.0.1:5000/image --output /tmp/current_tank_level.webp
+```

@@ -6,6 +6,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::=
     python3 \
     python3-flask \
     python3-flask-restful \
+    python3-pil \
     tini
 
 
